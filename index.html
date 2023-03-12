@@ -1,48 +1,72 @@
 <!DOCTYPE html>
 <html lang="hu">
-  <head>
-    <meta charset="utf-8">
-    <title>szamolo</title>
-  </head>
-  <body>
-    <form action="javascript:void(0)">
-        <fieldset>
-            <legend>Egyszerű számológép program</legend>
-            <input type="number" name="szam" id="szam1" placeholder="SZÁM 1"> .
-            <input type="number" name="szam" id="szam2" placeholder="SZÁM 2"> =
-            <input type="text" id="eredmeny" placeholder="eredmény" readonly>
-            <br><br>
-            <label for="muv">művelet:</label>
-            <input type="button" name="muv" value="+" onclick="ad()">
-            <input type="button" name="muv" value="-" onclick="kiv()">
-            <input type="button" name="muv" value="*" onclick="szor()">
-            <input type="button" name="muv" value="/" onclick="oszt()">
-            <input type="reset" name="muv" value="DEL">
-            <input type="color" name="szin" id="szin" value="#24ff65">
-        </fieldset>
-</form>
-<script>
-    function ad() {
-        eredmeny.value = Number(szam1.value) + Number(szam2.value);
-        document.body.style.backgroundColor = szin.value ;
-    }
-
-    function kiv() {
-        eredmeny.value = Number(szam1.value) - Number(szam2.value);
-        document.body.style.backgroundColor = szin.value ;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pitagorasz.css">
+    <title>Pitagorasz tétel</title>
+</head>
+<body>
 
 
-    function szor() {
-        eredmeny.value = Number(szam1.value) * Number(szam2.value);
-        document.body.style.backgroundColor = szin.value ;
-    }
+    <h1>Pitagorasz tétel</h1>
+    
+    <img src="pythagoras-theorem.png" alt=""> 
+<fieldset>
+    <legend><h2>Adj meg a két oldalt</h2></legend>
+    <p>A:<input type="number" id="a" min="1"></p>
+    <p>B:<input type="number" id="b" min="1"></p>
+    <p>Átfogó = <span id="sqrtC"></span>
+
+         
+    <p>A<sup>2</sup> = <span id="aSqu"></span>
+    <p>B<sup>2</sup> = <span id="bSqu"></span>
+    <p>A<sup>2</sup> + B<sup>2</sup>  = <span id="aAndB"></span>
+    <p>Átfogó = <span id="sqrtC"></span>
+      
+      
+   
+</fieldset>
+
+    
+    <button onclick="findH()">Nyomd meg a gombot hogy megkapd az eredményt</button>
+
+ <div id="triangle"></div>   
+
+   <script>
+    function findH(){
+  var sideA = document.getElementById("a").value;
+  var sideB = document.getElementById("b").value;
+
+ 
+
+  if(sideA<1 || sideB<1){
+     alert("Please enter in a valid number!");
+     }else{
+
+  document.getElementById("aSqu").innerHTML = sideA * sideA;
+  document.getElementById("bSqu").innerHTML = sideB * sideB;
+
+  document.getElementById("aAndB").innerHTML = (sideA * sideA) + (sideB * sideB);
+  
+
+   document.getElementById("sqrtC").innerHTML = Math.round((Math.sqrt((sideA * sideA) + (sideB * sideB)) * 100)) / 100;
+  
+
+  var tri= document.getElementById("triangle");
+  tri.style.borderTopWidth = sideA * 30 + "px";
+  tri.style.borderLeftWidth = sideB * 30 + "px";
 
 
-    function oszt() {
-        eredmeny.value = Number(szam1.value) / Number(szam2.value);
-        document.body.style.backgroundColor = szin.value ;
-    }
-</script>
+  var randoR = Math.floor(Math.random() * 255);
+  var randoG = Math.floor(Math.random() * 255);
+  var randoB = Math.floor(Math.random() * 255);
+  
+  tri.style.borderLeftColor = "rgb(" + randoR + "," + randoG  + "," +randoB+ ")";
+ }
+}
+   </script> 
+
 </body>
 </html>
